@@ -10,7 +10,7 @@
 		"chai": "^4.3.7",
 		"dotenv": "^16.0.3",
 		"ethereum-waffle": "^4.0.10",
-		"ethers": "^6.4.0",
+		"ethers": "5.4.0",
 		"hardhat": "^2.14.0",
 		"hardhat-contract-sizer": "^2.9.0",
 		"hardhat-deploy": "^0.11.29",
@@ -22,6 +22,7 @@
 	},
 	"scripts": {
 		"compile": "yarn hardhat compile",
-		"test": "yarn hardhat test"
+		"test": "yarn hardhat test",
+		"deploy": "yarn hardhat deploy"
 	}
 }
