@@ -1,1 +1,3 @@
 # Raffle
+
+Smart Contract Lottery

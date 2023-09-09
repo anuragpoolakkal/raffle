@@ -1,10 +1,12 @@
-require("@nomiclabs/hardhat-waffle");
-require("@nomiclabs/hardhat-etherscan");
-require("hardhat-deploy");
-require("solidity-coverage");
-require("hardhat-gas-reporter");
-require("hardhat-contract-sizer");
-require("dotenv").config();
+import "@typechain/hardhat";
+import "@nomiclabs/hardhat-waffle";
+import "@nomiclabs/hardhat-etherscan";
+import "@nomiclabs/hardhat-ethers";
+import "hardhat-gas-reporter";
+import "dotenv/config";
+import "solidity-coverage";
+import "hardhat-deploy";
+import { HardhatUserConfig } from "hardhat/config";
 
 /** @type import('hardhat/config').HardhatUserConfig */
 
@@ -13,7 +15,7 @@ const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL || "key";
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "0xkey";
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "key";
 
-module.exports = {
+const config: HardhatUserConfig = {
 	defaultNetwork: "hardhat",
 	networks: {
 		hardhat: {
@@ -24,13 +26,12 @@ module.exports = {
 			url: SEPOLIA_RPC_URL,
 			accounts: [PRIVATE_KEY],
 			chainId: 11155111,
-			blockConfirmations: 6,
 		},
 	},
 	gasReporter: {
 		enabled: false,
 		currency: "USD",
-		outputProfile: "gas-report.txt",
+		outputFile: "gas-report.txt",
 		noColors: true,
 	},
 	solidity: "0.8.7",
@@ -45,4 +46,10 @@ module.exports = {
 	mocha: {
 		timeout: 30000, // 300 seconds max
 	},
+	typechain: {
+		outDir: "typechain",
+		target: "ethers-v5",
+	},
 };
+
+export default config;
